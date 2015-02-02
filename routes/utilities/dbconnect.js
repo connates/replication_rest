@@ -3,8 +3,8 @@ var mysql = require('mysql');
 var connection = mysql.createConnection({
 	host : 'localhost',
 	user : 'root',
-	password : '9575922',
-	database : 'ebdrdbs',
+	password : '957592',
+	database : 'ebdrdbc',
 });
 
 exports.connectDB = function() {
