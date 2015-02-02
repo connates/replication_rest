@@ -1,5 +1,5 @@
 var dbConnection = require('./../utilities/dbconnect');
-var queryString = 'SELECT * FROM disks';
+var queryString = 'SELECT * FROM disk';
 
 var connection = dbConnection.getDbConnection();
 
@@ -9,7 +9,7 @@ exports.getDisks = function(req, res) {
 			throw err;
 
 		for ( var i in rows) {
-			console.log('Disk Name: ', rows[i].diskName);
+			console.log('Disk Name: ', rows[i].name);
 		}
 		res.jsonp(rows);
 	});
