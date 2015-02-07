@@ -62,6 +62,7 @@ app.get('/logout', function(req, res){
 //app.use('/',authentication.checkSessionValid);
 //disk APIS
 app.get('/disk', disks.getDisks);
+app.post('/disk', disks.configReplication);
 
 /*
 app.post('/disk',disks.createdisk);

@@ -8,9 +8,23 @@ exports.getDisks = function(req, res) {
 		if (err)
 			throw err;
 
-		for ( var i in rows) {
+		/*for ( var i in rows) {
 			console.log('Disk Name: ', rows[i].name);
-		}
+		}*/
+		res.jsonp(rows);
+	});
+};
+
+exports.configReplication= function(req, res) {
+	connection.query(queryString, function(err, rows, fields) {
+        
+        console.log("=========Inside config replication======"+req);
+		if (err)
+			throw err;
+
+		/*for ( var i in rows) {
+			console.log('Disk Name: ', rows[i].name);
+		}*/
 		res.jsonp(rows);
 	});
 };
