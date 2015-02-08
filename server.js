@@ -3,13 +3,30 @@ bodyParser = require('body-parser'),
 passport = require('passport'),
 //LocalStrategy = require('passport-local').Strategy,
 disks = require('./routes/disks/disk.js'),
+replicationConfig = require('./routes/data-replication/replication.configure.js');    
 users = require('./routes/users/user'),
 dbConnection = require('./routes/utilities/dbconnect.js'), 
 authentication = require('./routes/security/authentication'), 
 os = require('os'), 
 cluster = require('cluster');
 
-dbConnection.connectDB(function(err) {
+dbConnection.connectEbdrdbc(function(err) {
+	if (err) {
+		console.log("Threre is some error while connecting to DB");
+	} else {
+		console.log("Connection establised successfully");
+	}
+});
+
+dbConnection.connectEbdrdbs(function(err) {
+	if (err) {
+		console.log("Threre is some error while connecting to DB");
+	} else {
+		console.log("Connection establised successfully");
+	}
+});
+
+dbConnection.connectConfigDB(function(err) {
 	if (err) {
 		console.log("Threre is some error while connecting to DB");
 	} else {
@@ -63,6 +80,8 @@ app.get('/logout', function(req, res){
 //disk APIS
 app.get('/disk', disks.getDisks);
 app.post('/disk', disks.configReplication);
+
+app.post('/replicaiton-config',replicationConfig.configReplication);
 
 /*
 app.post('/disk',disks.createdisk);
